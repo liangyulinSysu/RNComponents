@@ -5,54 +5,60 @@
  */
 
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { View, Button, Modal } from 'react-native';
+import ModalView from './src/ModalView';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false
+    };
+  }
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+  _onDisplayModalView() {
+    this.setState({ visible: true });
+  }
+  
+  _showModalView = () => {
+    if(this.state.visible) {
+      return(
+        <ModalView
+          visible={true}
+          transparent={true}
+          style={{width: 100, height: 100}}
+          supportClickClose
+        >
+          <View style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.2)'}}>
+            <Button title="hahahhahahaha" />
+          </View>
+        </ModalView>
+      );
+    }
+  }
+
+  render(){
+    return(
+      <View style={styles.containerViewStyle}>
+        {this._showModalView()}
+        <Button
+          title='click me'
+          style={styles.btnStyle}
+          onPress={this._onDisplayModalView.bind(this)} 
+        />
       </View>
     );
   }
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
+const styles = {
+  containerViewStyle: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: 'cyan'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  btnStyle: {
+    marginTop: 100,
+  }
+};
+
+export default App;
