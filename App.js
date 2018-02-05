@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react';
 import { View, Button, Modal } from 'react-native';
-import ModalView from './src/ModalView';
+import ModalView from './src/Components/ModalView';
 
 class App extends Component {
   constructor(props) {
@@ -29,9 +29,7 @@ class App extends Component {
           style={{width: 100, height: 100}}
           supportClickClose
         >
-          <View style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.2)'}}>
-            <Button title="hahahhahahaha" />
-          </View>
+          <Button title="hahahhahahaha" onPress={() => alert("hehe")}/>
         </ModalView>
       );
     }
