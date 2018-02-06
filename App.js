@@ -28,6 +28,7 @@ class App extends Component {
           transparent={true}
           style={{width: 100, height: 100}}
           supportClickClose
+          animationType='none'
         >
           <Button title="hahahhahahaha" onPress={() => alert("hehe")}/>
         </ModalView>

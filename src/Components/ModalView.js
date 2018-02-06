@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import { View, Modal, TouchWithoutFeedback, TouchableWithoutFeedback } from 'react-native';
 
+const PropTypes = require('prop-types');
+
 export default class ModalView extends Component {
+    static propTypes = {
+        visible: PropTypes.bool,
+        backgroundColor: PropTypes.string,
+        supportClickClose: PropTypes.bool,
+        animationType: PropTypes.oneOf(['fade', 'none', 'slide']),
+        style: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.array])
+    }
+
     static defaultProps = {
         visible: true,
         backgroundColor: 'rgba(0, 0, 0, 0.3)',
