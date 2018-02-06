@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Modal } from 'react-native';
-import ModalView from '../Components/ModalView';
+import { View, Text, Modal, TouchableWithoutFeedback } from 'react-native';
+import { ModalView, Button } from '../Components';
 
 const PropTypes = require('prop-types');
 
@@ -31,37 +31,48 @@ class Confirm extends Component {
 
     static defaultProps = {
         supportClickClose: false,
-        backgroundStyle: { 
-            backgroundColor: '#fff',
-            borderWidth: 1, 
-            borderColor: '#000',
-            borderRadius: 4,
-            padding: 10,
-            alignSelf: 'center',
-            justifyContent: 'center',
-            flexDirection: 'column',
-            marginLeft: 25,
-            marginRight: 25,
-        },
-        titleStyle: {
-            fontSize: 20,
-            alignSelf: 'center',
-        },
-        descriptionStyle: {
-            fontSize: 16,
-            marginTop: 10,
-        }
+        
     }
 
     _renderTitle() {
         if(this.props.title) {
-            return <Text style={this.props.titleStyle}>{this.props.title}</Text>;
+            return <Text style={[styles.titleStyle, this.props.titleStyle]}>{this.props.title}</Text>;
         }
     }
 
     _renderInfo() {
         if(this.props.title) {
-            return <Text style={this.props.descriptionStyle}>{this.props.description}</Text>
+            return <Text style={[styles.descriptionStyle, this.props.descriptionStyle]}>{this.props.description}</Text>
+        }
+    }
+
+    _renderBtn() {
+        const { leftBtnTitle, leftBtnStyle, onLeftBtnPress, rightBtnTitle, rightBtnStyle, onRightBtnPress } = this.props;
+        if (leftBtnTitle && rightBtnTitle) {
+            return (
+                <View style={{ marginTop: 15, flexDirection: 'row' }}>
+                    <Button
+                        style={[styles.alertBtnStyle, styles.btnBorderStyle, leftBtnStyle]}
+                        title={leftBtnTitle}
+                        onPress={onLeftBtnPress}
+                    /> 
+                    <Button
+                        style={[styles.alertBtnStyle, styles.btnBorderStyle, rightBtnStyle]}
+                        title={rightBtnTitle}
+                        onPress={onRightBtnPress}
+                    />
+                </View>
+            );
+        } else if (leftBtnTitle) {
+            return (
+                <View style={[{ marginTop: 15 }, styles.btnBorderStyle]}>
+                    <Button 
+                        style={styles.singleBtnStyle}
+                        title={leftBtnTitle}
+                        onPress={onLeftBtnPress}
+                    />
+                </View>
+            );
         }
     }
 
@@ -73,13 +84,50 @@ class Confirm extends Component {
                 animationType='none'
                 supportClickClose={this.props.supportClickClose} 
             >
-                <View style={this.props.backgroundStyle}>
+                <View style={[styles.backgroundStyle, this.props.backgroundStyle]}>
                     {this._renderTitle()}
                     {this._renderInfo()}
+                    {this._renderBtn()}
                 </View>
             </ModalView>
         );
     }
+}
+
+const styles = {
+    backgroundStyle: { 
+        width: '75%',
+        backgroundColor: '#fff',
+        borderWidth: 1, 
+        borderColor: '#000',
+        borderRadius: 4,
+        padding: 10,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+    },
+    titleStyle: {
+        fontSize: 20,
+        alignSelf: 'center',
+    },
+    descriptionStyle: {
+        fontSize: 16,
+        marginTop: 10,
+        marginLeft: 15,
+        marginRight: 15,
+    },
+    singleBtnStyle: {
+        padding: 5,
+    },
+    alertBtnStyle: {
+        flex: 1,
+    },
+    btnBorderStyle: {
+        margin: 5,
+        borderWidth: 1,
+        borderRadius: 4,
+        borderColor: '#000',
+    },
 }
 
 export default Confirm;

@@ -3,7 +3,7 @@ import { View, Modal, TouchWithoutFeedback, TouchableWithoutFeedback } from 'rea
 
 const PropTypes = require('prop-types');
 
-export default class ModalView extends Component {
+class ModalView extends Component {
     static propTypes = {
         visible: PropTypes.bool,
         backgroundColor: PropTypes.string,
@@ -80,3 +80,5 @@ export default class ModalView extends Component {
         );
     }
 }
+
+export { ModalView };

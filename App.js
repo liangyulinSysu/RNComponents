@@ -28,6 +28,8 @@ class App extends Component {
           supportClickClose
           title='test'
           description='are u sure to log out'
+          leftBtnTitle='sure'
+          rightBtnTitle='cancel'
         />
       );
     }
