@@ -62,7 +62,7 @@ export default class ModalView extends Component {
                         onPress={this._onHiddenModal.bind(this)}
                         disabled={!supportClickClose}
                     >
-                        <View style={{ backgroundColor: backgroundColor, flex: 1}}>
+                        <View style={{ backgroundColor: backgroundColor, flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                             
                                 {children}
                         </View>

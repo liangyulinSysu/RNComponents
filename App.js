@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import { View, Button, Modal } from 'react-native';
 import ModalView from './src/Components/ModalView';
+import Confirm from './src/Container/Confirm';
 
 class App extends Component {
   constructor(props) {
@@ -23,15 +24,11 @@ class App extends Component {
   _showModalView = () => {
     if(this.state.visible) {
       return(
-        <ModalView
-          visible={true}
-          transparent={true}
-          style={{width: 100, height: 100}}
+        <Confirm
           supportClickClose
-          animationType='none'
-        >
-          <Button title="hahahhahahaha" onPress={() => alert("hehe")}/>
-        </ModalView>
+          title='test'
+          description='are u sure to log out'
+        />
       );
     }
   }
