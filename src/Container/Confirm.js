@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Modal, TouchableWithoutFeedback } from 'react-native';
-import { ModalView, Button } from '../Components';
+import { YLModalView, YLButton } from '../Components';
 
 const PropTypes = require('prop-types');
 
@@ -9,7 +9,7 @@ const PropTypes = require('prop-types');
  *  info
  *  btn
  */
-class Confirm extends Component {
+class YLConfirm extends Component {
     static propTypes = {
         supportClickClose: PropTypes.bool,
         backgroundStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.array]),
@@ -51,12 +51,12 @@ class Confirm extends Component {
         if (leftBtnTitle && rightBtnTitle) {
             return (
                 <View style={{ marginTop: 15, flexDirection: 'row' }}>
-                    <Button
+                    <YLButton
                         style={[styles.alertBtnStyle, styles.btnBorderStyle, leftBtnStyle]}
                         title={leftBtnTitle}
                         onPress={onLeftBtnPress}
                     /> 
-                    <Button
+                    <YLButton
                         style={[styles.alertBtnStyle, styles.btnBorderStyle, rightBtnStyle]}
                         title={rightBtnTitle}
                         onPress={onRightBtnPress}
@@ -66,7 +66,7 @@ class Confirm extends Component {
         } else if (leftBtnTitle) {
             return (
                 <View style={[{ marginTop: 15 }, styles.btnBorderStyle]}>
-                    <Button 
+                    <YLButton 
                         style={styles.singleBtnStyle}
                         title={leftBtnTitle}
                         onPress={onLeftBtnPress}
@@ -78,7 +78,7 @@ class Confirm extends Component {
 
     render() {
         return(
-            <ModalView
+            <YLModalView
                 visible
                 transparent
                 animationType='none'
@@ -89,7 +89,7 @@ class Confirm extends Component {
                     {this._renderInfo()}
                     {this._renderBtn()}
                 </View>
-            </ModalView>
+            </YLModalView>
         );
     }
 }
@@ -130,4 +130,4 @@ const styles = {
     },
 }
 
-export default Confirm;
+export default YLConfirm;

@@ -4,7 +4,7 @@ import { TouchableComponent } from '../Components';
 
 const PropTypes = require('prop-types');
 
-class Button extends Component {
+class YLButton extends Component {
     static propTypes = {
         touchType: PropTypes.oneOf(['TouchableHighlight', 'TouchableOpacity', 'TouchableWithoutFeedback', 'TouchableNativeFeedback']),
         onPress: PropTypes.func,
@@ -36,4 +36,4 @@ const styles = {
     },
 };
 
-export { Button };
+export { YLButton };
